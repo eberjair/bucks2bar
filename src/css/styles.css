@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #007bff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.btn-custom {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #218838;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #343a40;
+    color: white;
+}
