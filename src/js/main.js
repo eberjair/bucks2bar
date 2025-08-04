@@ -80,7 +80,7 @@ window.onload = function () {
         usernameInput.addEventListener('input', function () {
             const username = usernameInput.value;
             // regex to check if username has at least 1 cappital letter, 1 special character, 1 number and it's at least 8 characters long
-            const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~])[A-Za-z\d@$!%*?&~]{8,}$/;
             if (!regex.test(username)) {
                 // set the username input to red
                 usernameInput.style.borderColor = 'red';
