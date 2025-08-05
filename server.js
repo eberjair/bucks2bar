@@ -58,6 +58,14 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify({ message: 'Error sending email' }));
             }
         });
+    } else if (req.method === 'GET' && req.url === '/dummy-data') {
+        // Dummy data for each month
+        const data = {
+            income: [950, 900, 850, 800, 950, 700, 1000, 800, 900, 950, 850, 800],
+            expenses: [700, 600, 500, 400, 800, 400, 900, 600, 700, 800, 600, 500]
+        };
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(data));
     } else {
         res.writeHead(404);
         res.end();

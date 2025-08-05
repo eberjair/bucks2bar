@@ -1,6 +1,24 @@
 let barChartInstance = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Fetch dummy data and update inputs
+    fetch('http://localhost:3000/dummy-data')
+        .then(res => res.json())
+        .then(data => {
+            const months = [
+                'january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ];
+            months.forEach((month, i) => {
+                const incomeInput = document.getElementById(`income-${month}`);
+                const expensesInput = document.getElementById(`expenses-${month}`);
+                if (incomeInput) incomeInput.value = data.income[i];
+                if (expensesInput) expensesInput.value = data.expenses[i];
+            });
+            // Optionally update chart after setting values
+            if (typeof updateChartData === "function") updateChartData();
+        });
+
     const ctx = document.getElementById('barChart');
     if (ctx) {
         barChartInstance = new Chart(ctx, {
@@ -76,6 +94,14 @@ function getMonthlyData() {
     return { income, expenses };
 }
 
+/**
+ * Validates the username input field based on specific criteria:
+ * - At least 1 uppercase letter
+ * - At least 1 special character (@$!%*?&~)
+ * - At least 1 number
+ * - Minimum length of 8 characters
+ * Updates the input border color to green if valid, red if invalid.
+ */
 function usernameInputCallback() {
     const username = usernameInput.value;
     // regex to check if username has at least 1 capital letter, 1 special character, 1 number and it's at least 8 characters long

@@ -4,6 +4,7 @@ from pydantic import BaseModel, EmailStr
 import smtplib
 import base64
 from email.message import EmailMessage
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -55,7 +56,15 @@ async def send_chart(req: ChartRequest):
         return {"message": "Email sent!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error sending email")
-    
+
+@app.get("/dummy-data")
+async def get_dummy_data():
+    # Dummy data for each month
+    data = {
+        "income": [950, 900, 850, 800, 950, 700, 1000, 800, 900, 950, 850, 800],
+        "expenses": [700, 600, 500, 400, 800, 400, 900, 600, 700, 800, 600, 500]
+    }
+    return JSONResponse(content=data)
 
 
 if __name__ == "__main__":
