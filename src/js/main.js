@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.click();
             }
         });
+
+        
     }
 });
 
@@ -74,15 +76,17 @@ function getMonthlyData() {
     return { income, expenses };
 }
 
+function usernameInputCallback() {
+    const username = usernameInput.value;
+    // regex to check if username has at least 1 capital letter, 1 special character, 1 number and it's at least 8 characters long
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~])[A-Za-z\d@$!%*?&~]{8,}$/;
+    usernameInput.style.borderColor = regex.test(username) ? 'green' : 'red';
+}
+
 window.onload = () => {
     const usernameInput = document.getElementById('username');
     if (usernameInput) {
-        usernameInput.addEventListener('input', () => {
-            const username = usernameInput.value;
-            // regex to check if username has at least 1 capital letter, 1 special character, 1 number and it's at least 8 characters long
-            const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~])[A-Za-z\d@$!%*?&~]{8,}$/;
-            usernameInput.style.borderColor = regex.test(username) ? 'green' : 'red';
-        });
+        usernameInput.addEventListener('input', usernameInputCallback);
     }
 }
 

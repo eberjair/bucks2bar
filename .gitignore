@@ -1,3 +1,9 @@
+# vscode
+.vscode/*
+
+#python
+__pycache__/
+
 # Logs
 logs
 *.log

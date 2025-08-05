@@ -3,12 +3,12 @@ const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
     // Use your own SMTP settings here (e.g. Gmail, Outlook, or your own server)
-    host: 'smtp.gmail.com',
+    host: 'smtp.email.com',
     port: 587,
     secure: false,
     auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password'
+        user: 'user@email.com',
+        pass: 'password'
     }
 });
 
@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
                     return res.end(JSON.stringify({ message: 'Invalid email' }));
                 }
                 await transporter.sendMail({
-                    from: 'test@resend.dev',
+                    from: 'user@email.com',
                     to: email,
                     subject: 'Your Chart Image',
                     text: 'Attached is your chart image.',
